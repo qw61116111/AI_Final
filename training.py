@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
 import torch.nn as nn
 import torch
 from torch.utils.data import DataLoader
@@ -69,7 +69,7 @@ def test(shop):
     return data
 #%%
 net=AutoEncoder(22170,1024,2)
-net.cuda()
+#net.cuda()
 #%%
 optimizer = torch.optim.Adam(net.parameters(), lr=0.001,weight_decay=0.001)
 criterion = nn.MSELoss(reduction='sum')
@@ -78,7 +78,7 @@ mean_criterion = nn.MSELoss(reduction='mean')
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min',factor=0.5, patience=100, verbose=True)
 #%%
 shop_list=[0,1,8,9,11,13,17,20,23,27,29,30,32,33,40,43,51,54]
-for shop in range(49,60):
+for shop in range(60):
     z=0
     trainloader=DataLoader(dataset(is_train=True,shop=shop),batch_size=4,shuffle=False)
     optimizer = torch.optim.Adam(net.parameters(), lr=0.001,weight_decay=0.001)
@@ -86,13 +86,13 @@ for shop in range(49,60):
     val_data,val_label=val(shop)
     val_data,val_label=torch.unsqueeze(val_data,0).float().cuda(),torch.unsqueeze(val_label,0).float().cuda()
     if shop not in shop_list:
-        for epoch in range(5000):
+        for epoch in range(4):
             z=0
             for num_batch,data in enumerate(trainloader,0):
                 net.train()
                 inputs,label=data
-                inputs,label=(inputs).float().cuda(),(label).float().cuda()
-                
+                #inputs,label=(inputs).float().cuda(),(label).float().cuda()
+                inputs,label=(inputs).float(),(label).float()
                 out=net(inputs)
                 
                 loss=torch.sqrt(criterion(out,label))
@@ -102,13 +102,12 @@ for shop in range(49,60):
                 optimizer.step()
                 z+=loss.item()
                 
-            if epoch%10==0:
-                val_out=net(val_data)
-                loss=torch.sqrt(mean_criterion(val_out,val_label))
-                print('val loss= ',loss.item())
+            #if epoch%10==0:
+                #val_out=net(val_data)
+                #loss=torch.sqrt(mean_criterion(val_out,val_label))
+                #print('val loss= ',loss.item())
             scheduler.step(loss)
             print('shop %d: %.2f,  '%(shop,(z/(num_batch+1))))
-            if((z/(num_batch+1))<5):
-                torch.save(net,'%dsave.pt'%shop)
-                break
+
+        torch.save(net,'%dsave.pt'%shop)
         
