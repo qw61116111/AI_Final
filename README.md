@@ -26,3 +26,5 @@ main.py為submit的output程式
 請將第12行程式碼指向data_array.npy的前處理完的資料
 
 並且github已經有data_array的壓縮檔可以載了，請直接使用他，這樣比較快
+
+並且第15行程式碼指向test.csv的位置
