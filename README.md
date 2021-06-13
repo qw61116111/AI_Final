@@ -8,3 +8,7 @@ preprocsssing.py為資料前處理程式
 如果要執行，請將程式碼path指向sales_train.csv的位置
 
 並且資料處理完後，會將資料存成array的形式，名稱叫data_array
+
+
+train.py為模型訓練程式
+C:\\Users\Q56091087\Desktop\data_array.npy
