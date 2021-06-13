@@ -3,6 +3,14 @@ https://docs.google.com/presentation/d/1viaFwOaX9YonrFx6eQ3Hl2nSnD1uFAgbX6YtFzk6
 
 ---------------程式操作說明-----------------
 
+只要將檔案的路徑改一改，就能直接run原始碼跑了
+
+執行順序如下
+
+
+下載data_array.zip並解壓縮->train.py->main.py
+
+-------------------------------------------
 preprocsssing.py為資料前處理程式(已處理好的資料附在github裡面，不用再執行這個程式)
 
 如果要執行，請將地13行程式碼path指向sales_train.csv的位置
