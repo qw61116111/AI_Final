@@ -28,3 +28,5 @@ main.py為submit的output程式
 並且github已經有data_array的壓縮檔可以載了，請直接使用他，這樣比較快
 
 並且第15行程式碼指向test.csv的位置
+
+將第15行程式碼指向訓練好的模型的資料夾位置
