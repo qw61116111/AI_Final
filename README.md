@@ -41,7 +41,8 @@ main.py為submit的output程式
 
 -------------------------------------------
 
-train_FULL.py為完整版的訓練程式
+train_FULL.py為完整版的訓練程式，同時也使用GPU訓練
+
 
 請將第12行程式碼指向data_array.npy的前處理完的資料
 
