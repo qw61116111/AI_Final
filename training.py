@@ -69,7 +69,7 @@ def test(shop):
     return data
 #%%
 net=AutoEncoder(22170,1024,2)
-#net.cuda()
+
 #%%
 optimizer = torch.optim.Adam(net.parameters(), lr=0.001,weight_decay=0.001)
 criterion = nn.MSELoss(reduction='sum')
@@ -86,12 +86,12 @@ for shop in range(60):
     val_data,val_label=val(shop)
     val_data,val_label=torch.unsqueeze(val_data,0).float().cuda(),torch.unsqueeze(val_label,0).float().cuda()
     if shop not in shop_list:
-        for epoch in range(4):
+        for epoch in range(2 ):
             z=0
             for num_batch,data in enumerate(trainloader,0):
                 net.train()
                 inputs,label=data
-                #inputs,label=(inputs).float().cuda(),(label).float().cuda()
+
                 inputs,label=(inputs).float(),(label).float()
                 out=net(inputs)
                 
@@ -101,13 +101,8 @@ for shop in range(60):
                 loss.backward()
                 optimizer.step()
                 z+=loss.item()
-                
-            #if epoch%10==0:
-                #val_out=net(val_data)
-                #loss=torch.sqrt(mean_criterion(val_out,val_label))
-                #print('val loss= ',loss.item())
-            scheduler.step(loss)
+
+
             print('shop %d: %.2f,  '%(shop,(z/(num_batch+1))))
 
-        torch.save(net,'%dsave.pt'%shop)
-        
+torch.save(net,'C://Users/Q56091087/.spyder-py3/Class_AI/Final_hw/save.pt')
