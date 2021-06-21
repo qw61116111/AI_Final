@@ -109,6 +109,6 @@ for shop in range(60):
                 torch.save(net,'%dsave.pt'%shop)
                 break
 
-        torch.save(net,'%dsave.pt'%shop)
+torch.save(net,'save.pt')
         
         
