@@ -13,7 +13,7 @@ https://docs.google.com/presentation/d/1viaFwOaX9YonrFx6eQ3Hl2nSnD1uFAgbX6YtFzk6
 -------------------------------------------
 preprocsssing.py為資料前處理程式(已處理好的資料附在github裡面，不用再執行這個程式)
 
-如果要執行，請將地13行程式碼path指向sales_train.csv的位置
+如果要執行，請將第13行程式碼path指向sales_train.csv的位置
 
 並且資料處理完後，會將資料存成array的形式，名稱叫data_array
 
